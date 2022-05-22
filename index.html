@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const todo_list = [];//array to store stuff
+        let newest = null;//no value
+
+        theTop();
+
+        function theTop() {
+            while (newest === null) {
+                //loop until we have something
+                newest = prompt("Please enter a command (new, list, delete, quit)");
+                if (newest.toLowerCase() === "new") {
+                    let add = prompt("Enter your new todo item: ");
+                    todo_list.push(add);
+                    console.log(add + " was added to your list");
+                    newest = null;//reset so we'll be prompted again
+                    theTop();
+                }
+                else if (newest.toLowerCase() === "list") {
+                    console.log("*************");
+                    for (i = 0; i < todo_list.length; i++) {
+                        console.log(i + ":" + todo_list[i]);
+                    }
+                    console.log("*************");
+                    newest = null;//reset so we'll be prompted again
+                    theTop();
+                }
+                else if (newest.toLowerCase() === "delete") {
+                    let remove = prompt("Which numbered item would you like to remove? 0-" + todo_list.length);
+                    for (i = 0; i < todo_list.length; i++) {
+                        if (remove == i) {
+                            let remember = todo_list[i];
+                            todo_list.splice(i, 1);//at postion i, remove one item
+                            console.log("You removed: " + remember);
+                        }
+                    }
+                    newest = null;//reset so we'll be prompted again
+                    theTop();
+                }
+                else if (newest.toLowerCase() === "quit") {
+                    break;
+                }
+
+            }
+        }
+
+    </script>
+</body>
+
+</html>
